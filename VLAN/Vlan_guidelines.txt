@@ -1,0 +1,63 @@
+Take "1941 router" has data it big
+Interface->Gigabit 
+Switch-->2950T works with gigabit (Second wala hai)
+Arrow (4th wala) between switches baaki normal
+
+
+
+Vlan
+Statistically give IPs to PC
+Go on first switch
+Check sh vlan brief
+Config terminal
+Vlan 10
+Name student
+vlan 20
+Name teacher
+vlan 30
+Name guest
+Exit
+Exit (yes 2 exits—>it should come on simple switch#)
+Check Sh vlan br (Entries would have been added)
+
+Same for all switches^
+
+Now back to first switch
+Config terminal
+Interface fa0/1 {check by hovering through mousewhich interface is taking you to the pc}
+Switchport access vlan 10
+Interface fa0/2
+Switchport access vlan 20
+Interface fa0/3
+Switchport access vlan 30
+Check sh vlan brief
+
+^Same For the second switch connected to pc’s
+
+Now Router
+enable
+config terminal
+Interface gigabit ethernet 0/0.10
+Encapsulation dot1Q 10
+IP address 10.0.0.1 255.0.0.0
+
+Interface gigabit ethernet 0/0.20
+Encapsulation dot1Q 20
+IP address 20.0.0.1 255.0.0.0
+
+Interface gigabit ethernet 0/0.30
+Encapsulation dot1Q 30
+IP address 30.0.0.1 255.0.0.0
+
+
+Now Beech wala switch which connects to the router and 2 switches
+Enable 
+Configure terminal
+Interface range gigabitethernet 0/1-2
+switchport mode trunk
+Interface fastethernet0/1
+Switchport mode trunk
+
+DONE
+
+Give duas to Zoha Mobin kthanxbye
